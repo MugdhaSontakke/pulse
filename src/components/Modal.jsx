@@ -18,22 +18,22 @@ export default function Modal({ isOpen, onClose, title, children }) {
   return (
     <div className="fixed inset-0 z-[90] flex items-center justify-center p-4" onClick={onClose}>
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fade-in" />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" />
 
       {/* Modal Content */}
       <div
-        className="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto animate-fade-in-up"
+        className="relative glass-modal rounded-3xl shadow-2xl shadow-black/40 w-full max-w-2xl max-h-[85vh] overflow-y-auto animate-fade-in-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white/90 backdrop-blur-md px-6 py-4 border-b border-gray-100 flex items-center justify-between rounded-t-3xl z-10">
-          <h2 className="text-lg font-bold text-gray-900">{title}</h2>
+        <div className="sticky top-0 z-10 px-6 py-4 border-b border-white/5 flex items-center justify-between rounded-t-3xl" style={{ background: 'rgba(15, 23, 42, 0.95)', backdropFilter: 'blur(20px)' }}>
+          <h2 className="text-lg font-bold text-white">{title}</h2>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-xl hover:bg-white/10 transition-colors"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="w-5 h-5 text-gray-400" />
           </button>
         </div>
 

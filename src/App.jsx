@@ -4,32 +4,24 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import Dashboard from './pages/Dashboard'
 import Contact from './pages/Contact'
-
-function Layout({ children }) {
-  return (
-    <>
-      <Navbar />
-      {children}
-    </>
-  )
-}
+import Profile from './pages/Profile'
 
 function App() {
   const location = useLocation()
   const isDashboard = location.pathname === '/dashboard'
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-mesh">
       {!isDashboard && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   )
 }
 
 export default App
-

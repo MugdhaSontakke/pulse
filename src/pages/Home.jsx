@@ -3,117 +3,86 @@ import { ArrowRight, Activity, Brain, Zap } from 'lucide-react'
 import Footer from '../components/Footer'
 
 const features = [
-  {
-    icon: Activity,
-    title: 'Real-time Monitoring',
-    description: 'Track patient vitals with sub-millisecond edge processing. Detect anomalies instantly.',
-  },
-  {
-    icon: Brain,
-    title: 'AI Risk Prediction',
-    description: 'Predict deterioration up to 6 hours in advance with 94% accuracy.',
-  },
-  {
-    icon: Zap,
-    title: 'Edge Processing',
-    description: 'Process data locally. Zero network latency, full HIPAA compliance.',
-  },
+  { icon: Activity, title: 'Real-time Monitoring', desc: 'Track patient vitals with sub-millisecond edge processing. Detect anomalies the moment they occur.' },
+  { icon: Brain, title: 'AI Risk Prediction', desc: 'Deep learning models predict patient deterioration up to 6 hours before onset, with 94% accuracy.' },
+  { icon: Zap, title: 'Edge Processing', desc: 'Process data locally on edge devices. Zero network latency, full HIPAA compliance, always available.' },
 ]
 
 export default function Home() {
   return (
-    <div className="pt-14">
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 pt-24 pb-32">
-        <div className="max-w-2xl animate-in">
-          <p className="text-[13px] font-medium text-primary mb-4">Edge AI Healthcare Platform</p>
+    <div style={{ paddingTop: '64px' }}>
 
-          <h1 className="text-4xl sm:text-5xl font-bold text-text leading-[1.15] tracking-tight mb-6">
-            Smarter patient care,{' '}
-            <span className="text-muted">delivered in real-time.</span>
+      {/* ─── Hero ─── */}
+      <section className="max-w-5xl mx-auto px-6" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+        <div className="max-w-xl fade-up">
+          <p className="text-sm font-medium text-blue-600 mb-5">Edge AI Healthcare Platform</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
+            Smarter patient care,<br />
+            <span className="text-slate-400">delivered in real-time.</span>
           </h1>
-
-          <p className="text-base text-text-secondary leading-relaxed mb-10 max-w-lg">
+          <p className="text-lg text-slate-500 leading-relaxed mb-10">
             Monitor vitals, predict complications, and act faster — all processed at the edge for instant, private, reliable insights.
           </p>
-
-          <div className="flex flex-wrap gap-3">
-            <Link
-              to="/dashboard"
-              className="inline-flex items-center gap-2 text-[13px] font-medium text-white bg-text px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-colors"
-            >
-              View Dashboard
-              <ArrowRight className="w-3.5 h-3.5" />
+          <div className="flex flex-wrap gap-4">
+            <Link to="/dashboard" className="inline-flex items-center gap-2 text-sm font-medium text-white bg-slate-900 px-6 py-3 rounded-lg hover:bg-slate-800 transition-colors">
+              View Dashboard <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link
-              to="/products"
-              className="inline-flex items-center gap-2 text-[13px] font-medium text-text border border-gray-200 px-5 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
-            >
+            <Link to="/products" className="inline-flex items-center text-sm font-medium text-slate-900 border border-slate-200 px-6 py-3 rounded-lg hover:bg-slate-50 transition-colors">
               Explore Products
             </Link>
           </div>
         </div>
+      </section>
 
-        {/* Stats */}
-        <div className="mt-24 grid grid-cols-2 sm:grid-cols-4 gap-x-12 gap-y-8 animate-in delay-1">
+      {/* ─── Stats ─── */}
+      <div className="border-t border-slate-100" />
+      <section className="max-w-5xl mx-auto px-6" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-12 fade-up-d1">
           {[
-            { value: '200+', label: 'Hospitals' },
-            { value: '<10ms', label: 'Latency' },
-            { value: '99.9%', label: 'Uptime' },
-            { value: '2M+', label: 'Patients' },
+            { val: '200+', label: 'Hospitals' },
+            { val: '<10ms', label: 'Latency' },
+            { val: '99.9%', label: 'Uptime' },
+            { val: '2M+', label: 'Patients monitored' },
           ].map((s) => (
             <div key={s.label}>
-              <p className="text-3xl font-bold text-text">{s.value}</p>
-              <p className="text-[13px] text-muted mt-1">{s.label}</p>
+              <p className="text-3xl font-bold text-slate-900 mb-1">{s.val}</p>
+              <p className="text-sm text-slate-500">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-gray-100" />
-
-      {/* Features */}
-      <section className="max-w-6xl mx-auto px-6 py-32">
-        <div className="max-w-md mb-16 animate-in">
-          <p className="text-[13px] font-medium text-primary mb-3">Platform</p>
-          <h2 className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
-            Built for clinical precision
-          </h2>
-          <p className="text-base text-text-secondary mt-4 leading-relaxed">
-            Three core capabilities that power smarter healthcare decisions.
-          </p>
+      {/* ─── Features ─── */}
+      <div className="border-t border-slate-100" />
+      <section className="max-w-5xl mx-auto px-6" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
+        <div className="max-w-md mb-16 fade-up-d1">
+          <p className="text-sm font-medium text-blue-600 mb-3">Platform</p>
+          <h2 className="text-3xl font-bold text-slate-900 tracking-tight mb-4">Built for clinical precision</h2>
+          <p className="text-base text-slate-500 leading-relaxed">Three core capabilities that power smarter healthcare decisions.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12">
-          {features.map((f, i) => (
-            <div key={f.title} className={`animate-in delay-${i + 1}`}>
-              <f.icon className="w-5 h-5 text-text mb-5" />
-              <h3 className="text-base font-semibold text-text mb-2">{f.title}</h3>
-              <p className="text-[14px] text-text-secondary leading-relaxed">{f.description}</p>
+        <div className="grid md:grid-cols-3 gap-16 fade-up-d2">
+          {features.map((f) => (
+            <div key={f.title}>
+              <f.icon className="w-5 h-5 text-slate-900 mb-4" />
+              <h3 className="text-base font-semibold text-slate-900 mb-2">{f.title}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-gray-100" />
-
-      {/* CTA */}
-      <section className="max-w-6xl mx-auto px-6 py-32 text-center">
-        <div className="max-w-md mx-auto animate-in">
-          <h2 className="text-2xl sm:text-3xl font-bold text-text tracking-tight mb-4">
-            Ready to get started?
-          </h2>
-          <p className="text-base text-text-secondary mb-8">
-            Join 200+ hospitals delivering faster, smarter patient care.
-          </p>
-          <div className="flex justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 text-[13px] font-medium text-white bg-text px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-colors">
-              Request a Demo
-              <ArrowRight className="w-3.5 h-3.5" />
+      {/* ─── CTA ─── */}
+      <div className="border-t border-slate-100" />
+      <section className="max-w-5xl mx-auto px-6 text-center" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
+        <div className="max-w-md mx-auto fade-up-d1">
+          <h2 className="text-3xl font-bold text-slate-900 tracking-tight mb-4">Ready to get started?</h2>
+          <p className="text-base text-slate-500 mb-10">Join 200+ hospitals delivering faster, smarter patient care.</p>
+          <div className="flex justify-center gap-4">
+            <Link to="/contact" className="inline-flex items-center gap-2 text-sm font-medium text-white bg-slate-900 px-6 py-3 rounded-lg hover:bg-slate-800 transition-colors">
+              Request a Demo <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/dashboard" className="inline-flex items-center text-[13px] font-medium text-text border border-gray-200 px-5 py-2.5 rounded-lg hover:bg-gray-50 transition-colors">
+            <Link to="/dashboard" className="inline-flex items-center text-sm font-medium text-slate-900 border border-slate-200 px-6 py-3 rounded-lg hover:bg-slate-50 transition-colors">
               Try Dashboard
             </Link>
           </div>

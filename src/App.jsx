@@ -8,11 +8,11 @@ import Profile from './pages/Profile'
 
 function App() {
   const location = useLocation()
-  const isDashboard = location.pathname === '/dashboard'
+  const hiddenNav = location.pathname === '/dashboard'
 
   return (
     <div className="min-h-screen bg-white">
-      {!isDashboard && <Navbar />}
+      {!hiddenNav && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />

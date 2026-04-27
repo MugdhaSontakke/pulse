@@ -11,7 +11,7 @@ function App() {
   const isDashboard = location.pathname === '/dashboard'
 
   return (
-    <div className="min-h-screen bg-mesh">
+    <div className="min-h-screen bg-white">
       {!isDashboard && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />

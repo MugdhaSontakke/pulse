@@ -14,43 +14,56 @@ export default function Navbar() {
   const { pathname } = useLocation()
 
   return (
-    <nav className="fixed top-0 inset-x-0 z-50 h-16 bg-white/90 backdrop-blur-md border-b border-slate-100">
-      <div className="max-w-5xl mx-auto h-full px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <Activity className="w-5 h-5 text-blue-600" />
-          <span className="font-semibold text-slate-900 text-sm">EdgeMedical</span>
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      height: 72, background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(12px)',
+      borderBottom: '1px solid #f1f5f9',
+    }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 32px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
+          <Activity style={{ width: 20, height: 20, color: '#2563eb' }} />
+          <span style={{ fontSize: 15, fontWeight: 600, color: '#0f172a' }}>EdgeMedical</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Links */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 36 }} className="hidden md:flex">
           {links.map((l) => (
-            <Link key={l.to} to={l.to} className={`text-sm ${pathname === l.to ? 'text-slate-900 font-medium' : 'text-slate-500 hover:text-slate-900'} transition-colors`}>
+            <Link key={l.to} to={l.to} style={{
+              fontSize: 14, fontWeight: pathname === l.to ? 500 : 400,
+              color: pathname === l.to ? '#0f172a' : '#64748b',
+              textDecoration: 'none', transition: 'color 0.2s',
+            }}>
               {l.name}
             </Link>
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-5">
-          <Link to="/profile" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Profile</Link>
-          <Link to="/contact" className="text-sm font-medium text-white bg-slate-900 px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors">
-            Get Started
-          </Link>
+        {/* Right side */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24 }} className="hidden md:flex">
+          <Link to="/profile" style={{ fontSize: 14, color: '#64748b', textDecoration: 'none' }}>Profile</Link>
+          <Link to="/contact" className="btn-dark btn-sm">Get Started</Link>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden p-2 text-slate-500" aria-label="Menu">
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        {/* Mobile toggle */}
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ padding: 8, background: 'none', border: 'none', cursor: 'pointer' }}>
+          {open ? <X style={{ width: 22, height: 22, color: '#64748b' }} /> : <Menu style={{ width: 22, height: 22, color: '#64748b' }} />}
         </button>
       </div>
 
+      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-white border-b border-slate-100 px-6 py-4 space-y-2 fade-up">
+        <div className="md:hidden" style={{ background: '#fff', borderBottom: '1px solid #f1f5f9', padding: '16px 32px 24px' }}>
           {links.map((l) => (
-            <Link key={l.to} to={l.to} onClick={() => setOpen(false)}
-              className={`block py-2 text-sm ${pathname === l.to ? 'text-slate-900 font-medium' : 'text-slate-500'}`}>
+            <Link key={l.to} to={l.to} onClick={() => setOpen(false)} style={{
+              display: 'block', padding: '10px 0', fontSize: 15,
+              color: pathname === l.to ? '#0f172a' : '#64748b',
+              textDecoration: 'none', fontWeight: pathname === l.to ? 500 : 400,
+            }}>
               {l.name}
             </Link>
           ))}
-          <Link to="/profile" onClick={() => setOpen(false)} className="block py-2 text-sm text-slate-500">Profile</Link>
-          <Link to="/contact" onClick={() => setOpen(false)} className="block mt-2 text-center text-sm font-medium text-white bg-slate-900 py-2.5 rounded-lg">Get Started</Link>
+          <Link to="/profile" onClick={() => setOpen(false)} style={{ display: 'block', padding: '10px 0', fontSize: 15, color: '#64748b', textDecoration: 'none' }}>Profile</Link>
+          <Link to="/contact" onClick={() => setOpen(false)} className="btn-dark" style={{ marginTop: 12, justifyContent: 'center', width: '100%' }}>Get Started</Link>
         </div>
       )}
     </nav>

@@ -14,56 +14,52 @@ export default function Contact() {
   }
   const chg = (e) => setForm(p => ({ ...p, [e.target.name]: e.target.value }))
 
-  const inputCls = 'w-full px-4 py-3 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all'
-
   return (
-    <div style={{ paddingTop: '64px' }}>
-      <section className="max-w-5xl mx-auto px-6" style={{ paddingTop: '100px', paddingBottom: '120px' }}>
-        <div className="grid lg:grid-cols-2 gap-24">
+    <div style={{ paddingTop: 72 }}>
+      <section style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 32px 140px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100 }}>
+          {/* Left */}
           <div className="fade-up">
-            <p className="text-sm font-medium text-blue-600 mb-3">Contact</p>
-            <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">Let's talk</h1>
-            <p className="text-base text-slate-500 leading-relaxed mb-16">
+            <p style={{ fontSize: 14, fontWeight: 500, color: '#2563eb', marginBottom: 12 }}>Contact</p>
+            <h1 style={{ fontSize: 42, fontWeight: 700, color: '#0f172a', lineHeight: 1.15, marginBottom: 16 }}>Let's talk</h1>
+            <p style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7, marginBottom: 64 }}>
               Interested in transforming your hospital with edge AI? We'd love to hear from you.
             </p>
-            <div className="space-y-8 text-sm">
-              {[
-                ['Email', 'contact@edgemedical.io'],
-                ['Phone', '+1 (555) 234-5678'],
-                ['Address', '123 Innovation Drive\nSan Francisco, CA 94105'],
-                ['Hours', 'Mon–Fri, 8 AM – 6 PM PST'],
-              ].map(([label, val]) => (
-                <div key={label}>
-                  <p className="font-medium text-slate-900 mb-1">{label}</p>
-                  <p className="text-slate-500 whitespace-pre-line">{val}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+              {[['Email', 'contact@edgemedical.io'], ['Phone', '+1 (555) 234-5678'], ['Address', '123 Innovation Drive\nSan Francisco, CA 94105'], ['Hours', 'Mon–Fri, 8 AM – 6 PM PST']].map(([l, v]) => (
+                <div key={l}>
+                  <p style={{ fontSize: 14, fontWeight: 600, color: '#0f172a', marginBottom: 4 }}>{l}</p>
+                  <p style={{ fontSize: 14, color: '#64748b', whiteSpace: 'pre-line' }}>{v}</p>
                 </div>
               ))}
             </div>
           </div>
-
+          {/* Form */}
           <div className="fade-up-d1">
-            <form onSubmit={submit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
+            <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-900 mb-2">Name</label>
-                  <input id="name" name="name" required value={form.name} onChange={chg} className={inputCls} placeholder="Jane Smith" />
+                  <label style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#0f172a', marginBottom: 8 }}>Name</label>
+                  <input name="name" required value={form.name} onChange={chg} className="input" placeholder="Jane Smith" />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-900 mb-2">Email</label>
-                  <input id="email" name="email" type="email" required value={form.email} onChange={chg} className={inputCls} placeholder="jane@hospital.org" />
+                  <label style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#0f172a', marginBottom: 8 }}>Email</label>
+                  <input name="email" type="email" required value={form.email} onChange={chg} className="input" placeholder="jane@hospital.org" />
                 </div>
               </div>
               <div>
-                <label htmlFor="organization" className="block text-sm font-medium text-slate-900 mb-2">Organization</label>
-                <input id="organization" name="organization" value={form.organization} onChange={chg} className={inputCls} placeholder="General Hospital" />
+                <label style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#0f172a', marginBottom: 8 }}>Organization</label>
+                <input name="organization" value={form.organization} onChange={chg} className="input" placeholder="General Hospital" />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-900 mb-2">Message</label>
-                <textarea id="message" name="message" rows="5" required value={form.message} onChange={chg} className={`${inputCls} resize-none`} placeholder="Tell us about your needs..." />
+                <label style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#0f172a', marginBottom: 8 }}>Message</label>
+                <textarea name="message" rows="5" required value={form.message} onChange={chg} className="input" style={{ resize: 'none' }} placeholder="Tell us about your needs..." />
               </div>
-              <button type="submit" disabled={busy} className="inline-flex items-center gap-2 text-sm font-medium text-white bg-slate-900 px-6 py-3 rounded-lg hover:bg-slate-800 disabled:opacity-50 transition-colors">
-                {busy ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <><Send className="w-4 h-4" /> Send Message</>}
-              </button>
+              <div>
+                <button type="submit" disabled={busy} className="btn-dark" style={{ opacity: busy ? 0.6 : 1 }}>
+                  {busy ? <div style={{ width: 18, height: 18, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#fff', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} /> : <><Send style={{ width: 16, height: 16 }} /> Send Message</>}
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Edit3, Save, Award, Clock, Users, Star, Heart, Activity, Shield } from 'lucide-react'
+import { ArrowLeft, Edit3, Save, Award, Shield } from 'lucide-react'
 import Footer from '../components/Footer'
 import Toast from '../components/Toast'
 
@@ -11,11 +11,7 @@ const doc = {
   license: 'CA-MED-2019-4827',
   bio: 'Dedicated cardiologist with 12+ years of experience in interventional cardiology. Passionate about leveraging AI to improve patient outcomes.',
   specs: ['Interventional Cardiology', 'Electrophysiology', 'Heart Failure', 'Preventive Cardiology'],
-  certs: [
-    { name: 'Board Certified — Cardiovascular Disease', y: '2018' },
-    { name: 'Advanced Cardiac Life Support', y: '2023' },
-    { name: 'HIPAA Compliance', y: '2024' },
-  ],
+  certs: [{ name: 'Board Certified — Cardiovascular Disease', y: '2018' }, { name: 'Advanced Cardiac Life Support', y: '2023' }, { name: 'HIPAA Compliance', y: '2024' }],
   stats: [{ l: 'Patients', v: '342' }, { l: 'Critical', v: '28' }, { l: 'Response', v: '<3min' }, { l: 'Rating', v: '4.9' }],
   activity: [
     { t: 'Reviewed vitals for Marcus Thompson', w: '2h ago' },
@@ -33,72 +29,70 @@ export default function Profile() {
 
   const save = () => { setEditing(false); setToast(true) }
   const chg = (e) => setForm(p => ({ ...p, [e.target.name]: e.target.value }))
-  const inputCls = 'w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all'
 
   return (
-    <div style={{ paddingTop: '64px' }}>
-      <div className="max-w-4xl mx-auto px-6" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
-        <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors" style={{ marginBottom: '48px', display: 'inline-flex' }}>
-          <ArrowLeft className="w-3.5 h-3.5" /> Back to Dashboard
+    <div style={{ paddingTop: 72 }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '60px 32px 80px' }}>
+        <Link to="/dashboard" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, color: '#64748b', textDecoration: 'none', marginBottom: 48 }}>
+          <ArrowLeft style={{ width: 14, height: 14 }} /> Back to Dashboard
         </Link>
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 fade-up" style={{ marginTop: '48px', marginBottom: '48px' }}>
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center text-lg font-bold text-slate-700">SC</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 48 }} className="fade-up">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: '#475569' }}>SC</div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900">{doc.name}</h1>
-              <p className="text-sm text-slate-500">{doc.title} · {doc.hospital}</p>
+              <h1 style={{ fontSize: 24, fontWeight: 700, color: '#0f172a', marginBottom: 4 }}>{doc.name}</h1>
+              <p style={{ fontSize: 15, color: '#64748b' }}>{doc.title} · {doc.hospital}</p>
             </div>
           </div>
-          <button onClick={() => editing ? save() : setEditing(true)}
-            className={`inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-lg transition-colors ${editing ? 'text-white bg-slate-900' : 'text-slate-900 border border-slate-200 hover:bg-slate-50'}`}>
-            {editing ? <><Save className="w-3.5 h-3.5" /> Save</> : <><Edit3 className="w-3.5 h-3.5" /> Edit</>}
+          <button onClick={() => editing ? save() : setEditing(true)} className={editing ? 'btn-dark btn-sm' : 'btn-outline btn-sm'}>
+            {editing ? <><Save style={{ width: 14, height: 14 }} /> Save</> : <><Edit3 style={{ width: 14, height: 14 }} /> Edit</>}
           </button>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-12 fade-up-d1" style={{ marginBottom: '64px' }}>
-          {doc.stats.map(s => <div key={s.l}><p className="text-2xl font-bold text-slate-900">{s.v}</p><p className="text-sm text-slate-500 mt-1">{s.l}</p></div>)}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 48, marginBottom: 64 }} className="fade-up-d1">
+          {doc.stats.map(s => <div key={s.l}><p style={{ fontSize: 32, fontWeight: 700, color: '#0f172a' }}>{s.v}</p><p style={{ fontSize: 14, color: '#64748b', marginTop: 4 }}>{s.l}</p></div>)}
         </div>
 
-        <div className="border-t border-slate-100" style={{ marginBottom: '48px' }} />
+        <div style={{ borderTop: '1px solid #f1f5f9', marginBottom: 48 }} />
 
-        <div className="grid lg:grid-cols-3 gap-20">
-          <div className="lg:col-span-2 space-y-12">
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 80 }}>
+          <div>
             {/* Info */}
-            <div className="fade-up-d2">
-              <p className="text-xs font-semibold text-slate-900 uppercase tracking-wide mb-6">Information</p>
-              <div className="grid sm:grid-cols-2 gap-6">
-                {[{l:'Name',n:'name'},{l:'Email',n:'email'},{l:'Phone',n:'phone'},{l:'Department',n:'dept'}].map(f => (
+            <div style={{ marginBottom: 48 }} className="fade-up-d2">
+              <p style={{ fontSize: 12, fontWeight: 600, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 24 }}>Information</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                {[{ l: 'Name', n: 'name' }, { l: 'Email', n: 'email' }, { l: 'Phone', n: 'phone' }, { l: 'Department', n: 'dept' }].map(f => (
                   <div key={f.n}>
-                    <p className="text-xs text-slate-500 mb-1.5">{f.l}</p>
-                    {editing ? <input name={f.n} value={form[f.n]} onChange={chg} className={inputCls} /> : <p className="text-sm text-slate-900">{form[f.n]}</p>}
+                    <p style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{f.l}</p>
+                    {editing ? <input name={f.n} value={form[f.n]} onChange={chg} className="input" /> : <p style={{ fontSize: 15, color: '#0f172a' }}>{form[f.n]}</p>}
                   </div>
                 ))}
               </div>
-              <div style={{ marginTop: '24px' }}>
-                <p className="text-xs text-slate-500 mb-1.5">Bio</p>
-                {editing ? <textarea name="bio" value={form.bio} onChange={chg} rows={3} className={`${inputCls} resize-none`} /> : <p className="text-sm text-slate-500 leading-relaxed">{form.bio}</p>}
+              <div style={{ marginTop: 24 }}>
+                <p style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>Bio</p>
+                {editing ? <textarea name="bio" value={form.bio} onChange={chg} rows={3} className="input" style={{ resize: 'none' }} /> : <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.7 }}>{form.bio}</p>}
               </div>
             </div>
 
-            {/* Specializations */}
-            <div className="fade-up-d3">
-              <p className="text-xs font-semibold text-slate-900 uppercase tracking-wide mb-4">Specializations</p>
-              <div className="flex flex-wrap gap-2">
-                {doc.specs.map(s => <span key={s} className="px-3 py-1.5 bg-slate-50 border border-slate-100 rounded text-xs text-slate-600">{s}</span>)}
+            {/* Specs */}
+            <div style={{ marginBottom: 48 }}>
+              <p style={{ fontSize: 12, fontWeight: 600, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16 }}>Specializations</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {doc.specs.map(s => <span key={s} style={{ padding: '6px 14px', background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: 6, fontSize: 13, color: '#475569' }}>{s}</span>)}
               </div>
             </div>
 
             {/* Certs */}
-            <div>
-              <p className="text-xs font-semibold text-slate-900 uppercase tracking-wide mb-4">Certifications</p>
-              <div className="space-y-4">
+            <div style={{ marginBottom: 48 }}>
+              <p style={{ fontSize: 12, fontWeight: 600, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16 }}>Certifications</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {doc.certs.map(c => (
-                  <div key={c.name} className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5"><Award className="w-4 h-4 text-slate-400" /><span className="text-sm text-slate-900">{c.name}</span></div>
-                    <span className="text-xs text-slate-400">{c.y}</span>
+                  <div key={c.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}><Award style={{ width: 16, height: 16, color: '#94a3b8' }} /><span style={{ fontSize: 15, color: '#0f172a' }}>{c.name}</span></div>
+                    <span style={{ fontSize: 13, color: '#94a3b8' }}>{c.y}</span>
                   </div>
                 ))}
               </div>
@@ -106,28 +100,26 @@ export default function Profile() {
 
             {/* Compliance */}
             <div>
-              <p className="text-xs font-semibold text-slate-900 uppercase tracking-wide mb-4">Compliance</p>
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div><p className="text-xs text-slate-500 mb-1">License</p><p className="text-sm text-slate-900">{doc.license}</p></div>
-                <div><p className="text-xs text-slate-500 mb-1">HIPAA</p><p className="text-sm text-emerald-600 flex items-center gap-1"><Shield className="w-3.5 h-3.5" /> Compliant</p></div>
+              <p style={{ fontSize: 12, fontWeight: 600, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16 }}>Compliance</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                <div><p style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>License</p><p style={{ fontSize: 15, color: '#0f172a' }}>{doc.license}</p></div>
+                <div><p style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>HIPAA</p><p style={{ fontSize: 15, color: '#16a34a', display: 'flex', alignItems: 'center', gap: 6 }}><Shield style={{ width: 14, height: 14 }} /> Compliant</p></div>
               </div>
             </div>
           </div>
 
           {/* Right */}
           <div className="fade-up-d2">
-            <p className="text-xs font-semibold text-slate-900 uppercase tracking-wide mb-6">Recent Activity</p>
-            <div className="space-y-6">
-              {doc.activity.map((a, i) => <div key={i}><p className="text-sm text-slate-900 leading-snug">{a.t}</p><p className="text-xs text-slate-400 mt-1">{a.w}</p></div>)}
+            <p style={{ fontSize: 12, fontWeight: 600, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 24 }}>Recent Activity</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+              {doc.activity.map((a, i) => <div key={i}><p style={{ fontSize: 14, color: '#0f172a', lineHeight: 1.5 }}>{a.t}</p><p style={{ fontSize: 12, color: '#94a3b8', marginTop: 4 }}>{a.w}</p></div>)}
             </div>
-
-            <div className="border-t border-slate-100" style={{ marginTop: '32px', marginBottom: '32px' }} />
-
-            <p className="text-xs font-semibold text-slate-900 uppercase tracking-wide mb-4">Quick Links</p>
-            <div className="space-y-2">
-              <Link to="/dashboard" className="block text-sm text-blue-600 hover:underline">Dashboard</Link>
-              <Link to="/products" className="block text-sm text-blue-600 hover:underline">Products</Link>
-              <Link to="/contact" className="block text-sm text-blue-600 hover:underline">Support</Link>
+            <div style={{ borderTop: '1px solid #f1f5f9', margin: '32px 0' }} />
+            <p style={{ fontSize: 12, fontWeight: 600, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16 }}>Quick Links</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <Link to="/dashboard" className="btn-link" style={{ fontSize: 14 }}>Dashboard</Link>
+              <Link to="/products" className="btn-link" style={{ fontSize: 14 }}>Products</Link>
+              <Link to="/contact" className="btn-link" style={{ fontSize: 14 }}>Support</Link>
             </div>
           </div>
         </div>

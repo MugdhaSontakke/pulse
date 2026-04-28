@@ -3,16 +3,16 @@ import { Activity } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-100 mt-auto">
-      <div className="max-w-5xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
-          <div className="col-span-2 md:col-span-1">
-            <Link to="/" className="inline-flex items-center gap-2 mb-3">
-              <Activity className="w-4 h-4 text-blue-600" />
-              <span className="font-semibold text-slate-900 text-sm">EdgeMedical</span>
+    <footer style={{ borderTop: '1px solid #f1f5f9' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '80px 32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 48 }}>
+          <div>
+            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', marginBottom: 16 }}>
+              <Activity style={{ width: 16, height: 16, color: '#2563eb' }} />
+              <span style={{ fontSize: 14, fontWeight: 600, color: '#0f172a' }}>EdgeMedical</span>
             </Link>
-            <p className="text-sm text-slate-500 leading-relaxed max-w-xs">
-              Edge AI for real-time patient monitoring and predictive healthcare.
+            <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.7, maxWidth: 240 }}>
+              Edge AI for real-time patient monitoring and predictive healthcare analytics.
             </p>
           </div>
           {[
@@ -21,16 +21,16 @@ export default function Footer() {
             { title: 'Support', items: [['Docs', '/'], ['Contact', '/contact'], ['Privacy', '/']] },
           ].map((col) => (
             <div key={col.title}>
-              <p className="text-sm font-semibold text-slate-900 mb-4">{col.title}</p>
-              <div className="space-y-3">
+              <p style={{ fontSize: 13, fontWeight: 600, color: '#0f172a', marginBottom: 20 }}>{col.title}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {col.items.map(([name, to]) => (
-                  <Link key={name} to={to} className="block text-sm text-slate-500 hover:text-slate-900 transition-colors">{name}</Link>
+                  <Link key={name} to={to} style={{ fontSize: 13, color: '#64748b', textDecoration: 'none' }}>{name}</Link>
                 ))}
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-20 pt-8 border-t border-slate-100 text-xs text-slate-400">
+        <div style={{ marginTop: 80, paddingTop: 32, borderTop: '1px solid #f1f5f9', fontSize: 12, color: '#94a3b8' }}>
           © {new Date().getFullYear()} Edge Medical Solutions
         </div>
       </div>
